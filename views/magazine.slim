@@ -9,5 +9,7 @@ hr class="great-separate"
 ul
   - for issue in @issues
     li
-       a href="/issue/#{issue.id}" = "#{issue.name} (#{issue.published_at} published)"
+      - if not issue.cover_thumb_url.nil?
+        img src=issue.cover_thumb_url
+      a href="/issue/#{issue.id}" = "#{issue.name} (#{issue.published_at} published)"
 
