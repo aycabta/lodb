@@ -78,7 +78,12 @@ end
 
 post '/issue/:id/set_cover_url' do
   issue = Issue.get(params[:id])
-  issue.update(:cover_url => params[:cover_url])
+  if not params[:cover_url].nil?
+    issue.update(:cover_url => params[:cover_url])
+  end
+  if not params[:cover_thumb_url].nil?
+    issue.update(:cover_thumb_url => params[:cover_thumb_url])
+  end
   redirect "/issue/#{issue.id}", 302
 end
 

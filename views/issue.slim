@@ -2,9 +2,17 @@
   p
     img src=@issue.cover_url
 
+- if not @issue.cover_thumb_url.nil?
+  p
+    img src=@issue.cover_thumb_url
+
 form action="/issue/#{@issue.id}/set_cover_url" method="POST"
   span = "set cover URL"
-  input type="text" name="cover_url"
+  input type="text" name="cover_url" size="100" value=@issue.cover_url
+  br
+  span = "set cover thumb URL"
+  input type="text" name="cover_thumb_url" size="100" value=@issue.cover_thumb_url
+  br
   input type="submit" value="submit"
 
 hr class="great-separate"
