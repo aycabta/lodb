@@ -72,7 +72,7 @@ GEM
       eventmachine (~> 1.0)
       rack (~> 1.0)
     thread_safe (0.3.4)
-    tilt (2.0.1)
+    tilt (1.4.1)
     twitter (5.11.0)
       addressable (~> 2.3)
       buftok (~> 0.2.0)
@@ -100,5 +100,5 @@ DEPENDENCIES
   sinatra
   slim
   thin
-  tilt
+  tilt (~> 1.4.1)
   twitter
