@@ -100,4 +100,5 @@ DEPENDENCIES
   sinatra
   slim
   thin
+  tilt
   twitter
