@@ -31,6 +31,7 @@ class Author
   include DataMapper::Resource
   property :id, Serial
   property :name, String, :length => 256, :required => true
+  property :name_ruby, String, :length => 256, :required => true
   has n, :productions
 end
 
