@@ -14,6 +14,7 @@ class Issue
   include DataMapper::Resource
   property :id, Serial
   property :name, String, :length => 256, :required => true
+  property :cover_url, String, :length => 256
   property :published_at, Date
   belongs_to :magazine
   has n, :productions

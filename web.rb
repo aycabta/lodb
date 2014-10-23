@@ -76,6 +76,12 @@ post '/issue/:id/add_production' do
   redirect "/issue/#{issue.id}", 302
 end
 
+post '/issue/:id/set_cover_url' do
+  issue = Issue.get(params[:id])
+  issue.update(:cover_url => params[:cover_url])
+  redirect "/issue/#{issue.id}", 302
+end
+
 get '/author' do
   @authors = Author.all
   @title = "Author"
