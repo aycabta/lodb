@@ -31,5 +31,9 @@ hr class="great-separate"
 
 ul
   - for production in @productions
-    li = "[#{production.author.name}] #{production.name}"
+    li
+      = "["
+      a href="/author/#{production.author.id}" = production.author.name
+      = "] "
+      a href="/production/#{production.id}" = production.name
 
