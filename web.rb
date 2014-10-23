@@ -44,7 +44,7 @@ end
 
 get '/magazine/:id' do
   @magazine = Magazine.get(params[:id])
-  @issues = @magazine.issues
+  @issues = Issue.all(:magazine => @magazine, :order => [ :published_at.asc ])
   @title = @magazine.name
   slim :magazine
 end
