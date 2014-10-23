@@ -1,0 +1,11 @@
+dl
+  dt = "magazine"
+  dd
+    a href="/magazine/#{@production.issue.magazine.id}" = "#{@production.issue.magazine.name}"
+  dt = "issue"
+  dd
+    a href="/issue/#{@production.issue.id}" = "#{@production.issue.name} (#{@production.issue.published_at} published)"
+  dt = "author"
+  dd
+    a href="/author/#{@production.author.id}" = "#{@production.author.name} (#{@production.author.name_ruby})"
+

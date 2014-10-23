@@ -75,3 +75,16 @@ post '/author/add' do
     :name_ruby => params[:name_ruby])
   redirect "/author", 302
 end
+
+get '/author/:id' do
+  @author = Author.get(params[:id])
+  @title = "#{@author.name} (#{@author.name_ruby})"
+  slim :author
+end
+
+get '/production/:id' do
+  @production = Production.get(params[:id])
+  @title = "#{@production.name}"
+  slim :production
+end
+
