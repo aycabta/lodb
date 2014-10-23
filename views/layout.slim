@@ -17,5 +17,7 @@ html
       == yield
 
       hr class="great-separate"
+      - if not @screen_name.nil?
+        p = @screen_name
       p = "Powered by #{RUBY_DESCRIPTION}"
 

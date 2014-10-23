@@ -35,6 +35,15 @@ class Author
   has n, :productions
 end
 
+class Twitter
+  include DataMapper::Resource
+  property :id, Serial
+  property :user_id, Decimal, :required => true
+  property :screen_name, String, :length => 256, :required => true
+  property :token, String, :length => 256, :required => true
+  property :secret, String, :length => 256, :required => true
+end
+
 DataMapper.finalize
 
 def database_upgrade!
@@ -42,5 +51,6 @@ def database_upgrade!
   Issue.auto_upgrade!
   Production.auto_upgrade!
   Author.auto_upgrade!
+  Twitter.auto_upgrade!
 end
 

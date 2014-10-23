@@ -1,6 +1,9 @@
 require 'bundler'
 require 'sinatra'
 require 'slim'
+require 'uri'
+require 'omniauth'
+require 'omniauth-twitter'
 require './model'
 
 configure :production do
@@ -22,6 +25,16 @@ configure do
   set :static, true
   set :public_folder, "#{File.dirname(__FILE__)}/public"
   enable :run
+  enable :sessions
+  set :session_secret, ENV["SESSION_SECRET"]
+  use Rack::Session::Cookie,
+    :key => 'rack.session',
+    :path => '/',
+    :expire_after => 2592000,
+    :secret => ENV["SESSION_SECRET"]
+  use OmniAuth::Builder do
+    provider :twitter, ENV["API_KEY"], ENV["API_SECRET"]
+  end
 end
 
 get '/' do
@@ -86,5 +99,34 @@ get '/production/:id' do
   @production = Production.get(params[:id])
   @title = "#{@production.name}"
   slim :production
+end
+
+get "/auth/:provider/callback" do
+  auth = request.env["omniauth.auth"]
+  twitter = Twitter.first(:user_id => auth[:uid].to_i)
+  if not twitter.nil?
+    twitter.update(
+      :screen_name => auth[:info][:nickname],
+      :token => auth[:credentials][:token],
+      :secret => auth[:credentials][:secret])
+  else
+    twitter = Twitter.create(
+      :user_id => auth[:uid].to_i,
+      :screen_name => auth[:info][:nickname],
+      :token => auth[:credentials][:token],
+      :secret => auth[:credentials][:secret])
+  end
+  session[:screen_name] = twitter.screen_name
+  session[:logged_in] = true
+  redirect "/", 302
+end
+
+before do
+  uri = URI(request.url)
+  if request.request_method == 'PUT' and not session[:logged_in]
+    redirect "/", 302
+  else
+    @screen_name = session[:screen_name]
+  end
 end
 
