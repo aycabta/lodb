@@ -1,0 +1,13 @@
+form action="/author/add" method="POST"
+  span = "new author"
+  input type="text" name="name"
+  input type="text" name="name_ruby"
+  input type="submit" value="submit"
+
+hr class="great-separate"
+
+ul
+  - for author in @authors
+    li
+      a href="/author/#{author.id}" = "#{author.name} (#{author.name_ruby})"
+

@@ -63,3 +63,15 @@ post '/issue/:id/add_production' do
   redirect "/issue/#{issue.id}", 302
 end
 
+get '/author' do
+  @authors = Author.all
+  @title = "Author"
+  slim :author_index
+end
+
+post '/author/add' do
+  Author.create(
+    :name => params[:name],
+    :name_ruby => params[:name_ruby])
+  redirect "/author", 302
+end

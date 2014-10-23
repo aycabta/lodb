@@ -1,0 +1,9 @@
+ul
+  - for production in @author.productions
+    li
+      a href="/magazine/#{production.issue.magazine.id}" = "#{production.issue.magazine.name}"
+      = " - "
+      a href="/issue/#{production.issue.id}" = "#{production.issue.name} (#{production.issue.published_at} published)"
+      = " - "
+      a href="/production/#{production.id}" = "#{production.name}"
+
