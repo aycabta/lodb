@@ -1,0 +1,5 @@
+ul
+  - for magazine in @magazines
+    li
+       a href="/magazine/#{magazine.id}" = "#{magazine.name}"
+

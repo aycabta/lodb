@@ -1,0 +1,14 @@
+form action="/issue/#{@issue.id}/add_production" method="POST"
+  span = "new production"
+  input type="text" name="name"
+  select name="author_id"
+    - for author in @authors
+      option value=author.id = "#{author.name}"
+  input type="submit" value="submit"
+
+hr class="great-separate"
+
+ul
+  - for production in @productions
+    li = "[#{production.author.name}] #{production.name}"
+

@@ -1,0 +1,13 @@
+form action="/magazine/#{@magazine.id}/add_issue" method="POST"
+  span = "new issue"
+  input type="text" name="name"
+  input type="text" name="published_at"
+  input type="submit" value="submit"
+
+hr class="great-separate"
+
+ul
+  - for issue in @issues
+    li
+       a href="/issue/#{issue.id}" = "#{issue.name} (#{issue.published_at}発売)"
+

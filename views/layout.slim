@@ -1,0 +1,21 @@
+doctype 5
+html
+  head
+    meta charset="UTF-8"
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
+    - if @title.nil?
+      title LODB
+    - else
+      title #{@title} - LODB
+    link rel="stylesheet" href="/main.css"
+  body
+    - if @title.nil?
+      h1 LODB
+    - else
+      h1 #{@title}
+    #content
+      == yield
+
+      hr class="great-separate"
+      p = "Powered by #{RUBY_DESCRIPTION}"
+
