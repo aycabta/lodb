@@ -54,7 +54,7 @@ class App < Sinatra::Base
 
   get '/issue/:id' do
     @issue = Issue.get(params[:id])
-    @productions = @issue.productions.select(&:issue)
+    @productions = @issue.productions
     @authors = Author.all
     @title = "#{@issue.name} - #{@issue.magazine.name}"
     slim :issue
@@ -96,6 +96,7 @@ class App < Sinatra::Base
 
   get '/author/:id' do
     @author = Author.get(params[:id])
+    @productions = @author.productions.select(&:issue)
     @title = "#{@author.name} (#{@author.name_ruby})"
     slim :author
   end

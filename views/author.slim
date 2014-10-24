@@ -1,5 +1,5 @@
 ul
-  - for production in @productions
+  - @productions.each do |production|
     li
       a href="/magazine/#{production.issue.magazine.id}" = "#{production.issue.magazine.name}"
       = " - "
