@@ -3,20 +3,21 @@ require 'bundler'
 Bundler.require
 
 DataMapper.setup(:default, ENV["DATABASE_URL"])
+DataMapper::Property::String.length 256
 
 class Magazine
   include DataMapper::Resource
   property :id, Serial
-  property :name, String, :length => 256, :required => true
+  property :name, String, :required => true
   has n, :issues
 end
 
 class Issue
   include DataMapper::Resource
   property :id, Serial
-  property :name, String, :length => 256, :required => true
-  property :cover_url, String, :length => 256
-  property :cover_thumb_url, String, :length => 256
+  property :name, String, :required => true
+  property :cover_url, String
+  property :cover_thumb_url, String
   property :published_at, Date
   belongs_to :magazine
   has n, :productions
@@ -25,7 +26,7 @@ end
 class Production
   include DataMapper::Resource
   property :id, Serial
-  property :name, String, :length => 256, :required => true
+  property :name, String, :required => true
   belongs_to :issue
   belongs_to :author
 end
@@ -33,8 +34,8 @@ end
 class Author
   include DataMapper::Resource
   property :id, Serial
-  property :name, String, :length => 256, :required => true
-  property :name_ruby, String, :length => 256, :required => true
+  property :name, String, :required => true
+  property :name_ruby, String, :required => true
   has n, :productions
 end
 
@@ -42,9 +43,9 @@ class Twitter
   include DataMapper::Resource
   property :id, Serial
   property :user_id, Decimal, :required => true
-  property :screen_name, String, :length => 256, :required => true
-  property :token, String, :length => 256, :required => true
-  property :secret, String, :length => 256, :required => true
+  property :screen_name, String, :required => true
+  property :token, String, :required => true
+  property :secret, String, :required => true
 end
 
 DataMapper.finalize
