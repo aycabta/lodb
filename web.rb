@@ -1,18 +1,12 @@
 require 'bundler'
-require 'sinatra'
-require 'slim'
-require 'uri'
-require 'omniauth'
-require 'omniauth-twitter'
+Bundler.require
 require './model'
 
 configure :production do
-  DataMapper.setup(:default, ENV["DATABASE_URL"])
   database_upgrade!
 end
 
 configure :test, :development do
-  DataMapper.setup(:default, "yaml:///tmp/lodb")
   database_upgrade!
 end
 

@@ -1,7 +1,8 @@
+# encoding: utf-8
 require 'bundler'
-require 'dm-core'
-require 'dm-migrations'
-require 'net/http'
+Bundler.require
+
+DataMapper.setup(:default, ENV["DATABASE_URL"])
 
 class Magazine
   include DataMapper::Resource
