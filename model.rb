@@ -51,11 +51,3 @@ end
 
 DataMapper.finalize
 
-def database_upgrade!
-  Magazine.auto_upgrade!
-  Issue.auto_upgrade!
-  Production.auto_upgrade!
-  Author.auto_upgrade!
-  User.auto_upgrade!
-end
-

@@ -5,7 +5,7 @@ class App < Sinatra::Base
 
   def initialize *args
     require './model'
-    database_upgrade!
+    DataMapper.auto_upgrade!
     super
   end
 
