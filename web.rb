@@ -27,7 +27,7 @@ class App < Sinatra::Base
       :expire_after => 2592000,
       :secret => ENV["SESSION_SECRET"]
     use OmniAuth::Builder do
-      provider :twitter, ENV["API_KEY"], ENV["API_SECRET"]
+      provider :twitter, ENV["TWITTER_API_KEY"], ENV["TWITTER_API_SECRET"]
     end
   end
 
