@@ -1,5 +1,5 @@
 ul
-  - for production in @author.productions.select{|it|it.issue}
+  - for production in @author.productions.select(&:issue)
     li
       a href="/magazine/#{production.issue.magazine.id}" = "#{production.issue.magazine.name}"
       = " - "
