@@ -40,7 +40,7 @@ class Author
   has n, :productions
 end
 
-class Twitter
+class User
   include DataMapper::Resource
   property :id, Serial
   property :user_id, Decimal, :required => true
@@ -56,6 +56,6 @@ def database_upgrade!
   Issue.auto_upgrade!
   Production.auto_upgrade!
   Author.auto_upgrade!
-  Twitter.auto_upgrade!
+  User.auto_upgrade!
 end
 

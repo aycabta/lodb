@@ -108,20 +108,20 @@ class App < Sinatra::Base
 
   get "/auth/:provider/callback" do
     auth = request.env["omniauth.auth"]
-    twitter = Twitter.first(:user_id => auth[:uid].to_i)
-    if not twitter.nil?
-      twitter.update(
+    user = User.first(:user_id => auth[:uid].to_i)
+    if not user.nil?
+      user.update(
         :screen_name => auth[:info][:nickname],
         :token => auth[:credentials][:token],
         :secret => auth[:credentials][:secret])
     else
-      twitter = Twitter.create(
+      user = User.create(
         :user_id => auth[:uid].to_i,
         :screen_name => auth[:info][:nickname],
         :token => auth[:credentials][:token],
         :secret => auth[:credentials][:secret])
     end
-    session[:screen_name] = twitter.screen_name
+    session[:screen_name] = user.screen_name
     session[:logged_in] = true
     redirect "/", 302
   end

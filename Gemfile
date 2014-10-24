@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-gem 'twitter', require: false
+gem 'twitter'
 gem 'sinatra'
 gem 'thin'
 gem 'dm-core'
