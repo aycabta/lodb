@@ -50,4 +50,3 @@ class User
 end
 
 DataMapper.finalize
-

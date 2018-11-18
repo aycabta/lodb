@@ -16,6 +16,3 @@ Lodb
 3. Create `.env`. `.env.sample` is useful.
 4. `bundle exec foreman start` to run
 5. Access to `http://lvh.me:5000`
-
-
-
